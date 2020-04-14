@@ -1,3 +1,4 @@
-const soma = (a, b) => a + b;
+import { sum } from './mathOperations';
 
-console.log('soma: ', soma(2,7));
+const app = document.querySelector('#app');
+app.innerHTML = `<p>O resultado da soma é ${sum(2,7)}`
