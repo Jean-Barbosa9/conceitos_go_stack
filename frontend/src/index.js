@@ -1,4 +1,6 @@
-import { sum } from './mathOperations';
+import React from 'react';
+import { render } from 'react-dom';
 
-const app = document.querySelector('#app');
-app.innerHTML = `<p>O resultado da soma é ${sum(2,7)}`
+import App from './App';
+
+render(<App />, document.getElementById('app'));
