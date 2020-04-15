@@ -12,8 +12,12 @@ export default function App() {
       .catch(error => console.error(error));
   },[])
 
-  function handleAddProject() {
-    setProjects([...projects, `Novo projeto ${Date.now()}`]);
+  async function handleAddProject() {
+    const project = (await api.post('projects', {
+      title: `Novo projeto ${Date.now()}`,
+      owner: 'Jean Barbosa',
+    })).data;    
+    setProjects([...projects, project]);
   }
 
   return (
