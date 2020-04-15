@@ -1,26 +1,28 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, Text } from 'react-native';
 
 export default function App() {
-  const style = StyleSheet.create({
-    container: {
-      height: '100%',
-      padding: 20,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#7159c1'
-    },
-    text: {
-      fontSize: 25,
-      color: '#ffffff'
-    }
-  })
   return (
-    <SafeAreaView>
-      <View style={style.container}>
+    <Fragment>
+      <StatusBar barStyle="light-content" backgroundColor="#7519c1" />
+      <SafeAreaView style={style.container}>
         <Text style={style.text}>Just GoStack!</Text>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </Fragment>
   )
 }
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#7159c1'
+  },
+  text: {
+    fontSize: 25,
+    color: '#ffffff'
+  }
+})
