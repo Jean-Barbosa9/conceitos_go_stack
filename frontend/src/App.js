@@ -1,13 +1,16 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import './App.css';
+import api from '../services/api';
 import Header from './components/Header';
-import sampleImg from'./assets/sample-image.jpg';
 
 export default function App() {
-  const [projects, setProjects] = useState([
-    'Aplicação Web Front-End',
-    'Aplicativo Mobile',
-  ])
+  const [projects, setProjects] = useState([])
+
+  useEffect(() => {
+    api.get('projects')
+      .then(({ data }) => setProjects(data))
+      .catch(error => console.error(error));
+  },[])
 
   function handleAddProject() {
     setProjects([...projects, `Novo projeto ${Date.now()}`]);
@@ -16,9 +19,13 @@ export default function App() {
   return (
     <Fragment>
       <Header title="GoStack 11 Rocketseat" />
-      <img width={300} src={sampleImg} alt="Imagem de exemplo para importação"/>
       <ul>
-        {projects.map(project => <li key={project}>{project}</li>)}
+        {projects && projects.map(project => (
+          <li key={project.id}>
+            <strong>{project.title} </strong>
+            (<small>autor: {project.owner}</small>)
+          </li>
+        ))}
       </ul>
       <button type="button" 
         onClick={handleAddProject}>Adicionar projeto</button>
