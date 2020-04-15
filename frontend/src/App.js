@@ -14,7 +14,7 @@ export default function App() {
 
   async function handleAddProject() {
     const project = (await api.post('projects', {
-      title: `Novo projeto ${Date.now()}`,
+      title: `Novo projeto ${new Date().toLocaleString()}`,
       owner: 'Jean Barbosa',
     })).data;    
     setProjects([...projects, project]);
@@ -24,12 +24,15 @@ export default function App() {
     <Fragment>
       <Header title="GoStack 11 Rocketseat" />
       <ul>
-        {projects && projects.map(project => (
-          <li key={project.id}>
-            <strong>{project.title} </strong>
-            (<small>autor: {project.owner}</small>)
-          </li>
-        ))}
+        {projects.length 
+          ? projects.map(project => (
+            <li key={project.id}>
+              <strong>{project.title} </strong>
+              (<small>autor: {project.owner}</small>)
+            </li>
+          ))
+          : <li><strong>Ainda não há projetos cadastrados!</strong></li>
+        }
       </ul>
       <button type="button" 
         onClick={handleAddProject}>Adicionar projeto</button>
