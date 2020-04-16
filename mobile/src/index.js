@@ -70,19 +70,20 @@ export default function App() {
               <FlatList 
                 style={style.list}
                 data={projects}
-                renderItem={({item}) => (
+                keyExtractor={project => project.id}
+                renderItem={({item: project}) => (
                   <View>
-                    <Text style={style.text}>{item.title}</Text>
+                    <Text style={style.text}>{project.title}</Text>
                     <TouchableOpacity 
                       style={style.secondaryButton} 
-                      onPress={() => removeProject(item.id)}>
+                      onPress={() => removeProject(project.id)}>
                       <Text 
                         style={[style.lightText, style.centerText]}
                       >Remover</Text>
                     </TouchableOpacity>
                   </View>
                 )}
-                keyExtractor={item => item.id}
+                
               />
             </Fragment>
           )
