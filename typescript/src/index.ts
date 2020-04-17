@@ -1,9 +1,10 @@
 import express from 'express';
+import { HelloTypescript } from './routes';
 
 const app = express();
 
-app.get('/', (request, response) => {
-  return response.json({ message: 'Hello TypeScript!' });
-});
+app.get('/', HelloTypescript);
 
-app.listen(3333);
+app.listen('3333', () => {
+  console.log('Server running...')
+});
